@@ -40,3 +40,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/main/java/hexlet/code/file2.json
+/src/main/java/hexlet/code/file1.json
