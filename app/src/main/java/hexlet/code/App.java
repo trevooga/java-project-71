@@ -29,6 +29,6 @@ public class App implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Hello world!");
+        System.out.println(Differ.generate(filepath1, filepath2));
     }
 }
