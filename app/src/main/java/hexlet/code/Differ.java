@@ -1,7 +1,6 @@
 package hexlet.code;
 
 
-import com.sun.source.tree.Tree;
 import utils.Parsing;
 
 import java.io.File;
@@ -9,9 +8,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class Differ {
-    public static String generate(File file1, File file2) {
-        String differenceOfFiles = "{\n";
-        try {
+    public static String generate(File file1, File file2) throws IOException {
+        StringBuilder differenceOfFiles = new StringBuilder("{\n");
+
             Map<String, Object> mapOfFile1 = Parsing.parse(file1);
             Map<String, Object> mapOfFile2 = Parsing.parse(file2);
 
@@ -22,27 +21,23 @@ public class Differ {
                 if (mapOfFile2.containsKey(key1)) {
                     Object value2 = mapOfFile2.get(key1);
                     if (!value1.equals(value2)) {
-                        differenceOfFiles += ("- " + key1 + ": " + value1 + "\n");
-                        differenceOfFiles += ("+ " + key1 + ": " + value2 + "\n");
+                        differenceOfFiles.append("- ").append(key1).append(": ").append(value1).append("\n");
+                        differenceOfFiles.append("+ ").append(key1).append(": ").append(value2).append("\n");
                     } else {
-                        differenceOfFiles += ("  " + key1 + ": " + value2 + "\n");
+                        differenceOfFiles.append("  ").append(key1).append(": ").append(value2).append("\n");
                     }
                 } else {
-                    differenceOfFiles += ("- " + key1 + ": " + value1 + "\n");
+                    differenceOfFiles.append("- ").append(key1).append(": ").append(value1).append("\n");
                 }
             }
 
             for (Map.Entry<String, Object> entry2 : mapOfFile2.entrySet()) { // Проходим по элементам второго файла, которых нет в первом
                 String key2 = entry2.getKey();
                 if (!mapOfFile1.containsKey(key2)) {
-                    differenceOfFiles += ("+ " + key2 + ": " + entry2.getValue() + "\n");
+                    differenceOfFiles.append("+ ").append(key2).append(": ").append(entry2.getValue()).append("\n");
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return differenceOfFiles + "}";
     }
 }

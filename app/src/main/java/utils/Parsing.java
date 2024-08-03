@@ -17,4 +17,4 @@ public class Parsing {
         });
         return new TreeMap<>(unsortedMap);
     }
-    }
+}
