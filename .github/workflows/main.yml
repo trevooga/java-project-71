@@ -17,15 +17,13 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.9
-      - name: Generate coverage report
-        run: |
-          cd app/
-          make report
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: src/main/java
       - name: Publish code coverage
-        uses: paambaati/codeclimate-action@v5.0.0
+        run: |
+          cd app/
+          make report
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: src/main/java
