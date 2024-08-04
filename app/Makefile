@@ -8,3 +8,6 @@ clean:
 
 build:
 	./gradlew clean installDist
+
+report:
+	./gradlew jacocoTestReport
