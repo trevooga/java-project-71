@@ -2,6 +2,7 @@ plugins {
     id("java")
     application
     jacoco
+    id("checkstyle")
 }
 
 group = "org.example"
