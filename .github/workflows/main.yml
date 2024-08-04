@@ -17,8 +17,6 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.9
-      - name: Run tests and generate coverage report
-        run: ./gradlew test jacocoTestReport
       - name: Generate coverage report
         run: |
           cd app/
