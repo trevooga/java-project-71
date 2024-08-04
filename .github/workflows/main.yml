@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'corsetto'
+          distribution: 'temurin'
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.9
@@ -21,7 +21,7 @@ jobs:
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-           CC_TEST_REPORTER_ID: 7e4b9cbb41c9a07292f6068f373a71732121f7690893f4d106b4f287dfa6f7ef
+           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
            JACOCO_SOURCE_PATH: app/src/main/java
         with:
            coverageCommand: make report
