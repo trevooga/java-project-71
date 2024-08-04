@@ -8,6 +8,7 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+
 repositories {
     mavenCentral()
 }
@@ -26,8 +27,19 @@ checkstyle {
     configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
 }
 
-tasks.test {
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("build/reports/jacoco")
+}
+
+tasks.test{
     useJUnitPlatform()
 }
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
 
