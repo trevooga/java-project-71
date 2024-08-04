@@ -21,6 +21,11 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
 
+checkstyle {
+    toolVersion = "8.45.1"
+    configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
+}
+
 tasks.test {
     useJUnitPlatform()
 }
