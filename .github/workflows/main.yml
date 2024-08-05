@@ -18,12 +18,27 @@ jobs:
         with:
           gradle-version: 8.9
 
+      - name: Generate coverage report
+        run: |
+          cd app
+          make report
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          JACOCO_SOURCE_PATH: app/src/main/java
 
-      - name: Publish code coverage
+      - name: Format coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make report
-          coverageLocations: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml
-          workingDirectory: app/
+          coverageInputType: jacoco
+          coverageFile: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml
+          JACOCO_SOURCE_PATH: app/src/main/java
+
+      - name: Upload coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageInputType: jacoco
+          coverageFile: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml
