@@ -21,7 +21,6 @@ jobs:
       - name: Generate coverage report
         run: |
           cd app
-          make report
         env:
           CC_TEST_REPORTER_ID: 7e4b9cbb41c9a07292f6068f373a71732121f7690893f4d106b4f287dfa6f7ef
           JACOCO_SOURCE_PATH:  app/src/main/java
@@ -30,5 +29,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
+          coverageCommand: make report
           coverageLocations: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml:jacoco
-          coverageInputType: jacoco
+          
