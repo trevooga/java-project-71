@@ -29,7 +29,7 @@ checkstyle {
 
 jacoco {
     toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir("build/reports/jacoco")
+    reportsDirectory = layout.buildDirectory.dir("build/build/reports/test")
 }
 
 tasks.test{
@@ -37,6 +37,7 @@ tasks.test{
 }
 
 tasks.jacocoTestReport {
+    dependsOn(tasks.test)
     reports {
         xml.required.set(true)
         html.required.set(true)
