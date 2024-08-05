@@ -27,4 +27,4 @@ jobs:
           coverageCommand: |
             cd app/
             make report
-            coverageLocations: ${{ github.workspace }}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+            coverageLocations: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml:jacoco
