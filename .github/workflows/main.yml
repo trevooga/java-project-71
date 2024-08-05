@@ -24,7 +24,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: |
-            cd app/
-            make report
-            coverageLocations: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml:jacoco
+          coverageCommand: make report
+          coverageLocations: ${{ github.workspace }}/app/build/build/reports/test/test/jacocoTestReport.xml:jacoco
+          workingDirectory: app/
