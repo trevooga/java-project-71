@@ -18,6 +18,9 @@ jobs:
         with:
           gradle-version: 8.9
 
+      - name: Run tests and generate coverage report
+        run: |
+          ./gradlew test jacocoTestReport
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v8.0.0
@@ -25,5 +28,9 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make report
-          coverageLocations: ${{ github.workspace }}/app/build/reports/jacoco/jacocoTestReport.xml:jacoco
+          coverageLocations: ${{ github.workspace }}/app/build/reports/test/test/jacocoTestReport.xml
           workingDirectory: app/
+
+      - name: Run CC Reporter after-build
+        run: |
+          ./cc-reporter after-build --coverage-input-type jacoco --exit-code $?
