@@ -32,8 +32,8 @@ public class TestsOfParser {
                 "+ verbose: true\n"
                 +
                 "}";
-        File file1 = new File("src/test/resources/file1.json");
-        File file2 = new File("src/test/resources/file2.json");
+        File file1 = new File("src/test/resources/JSONfiles/file1.json");
+        File file2 = new File("src/test/resources/JSONfiles/file2.json");
         assertEquals(correctFile, Differ.generate(file1, file2));
     }
 
