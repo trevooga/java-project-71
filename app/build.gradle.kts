@@ -29,7 +29,7 @@ checkstyle {
 
 jacoco {
     toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir("build/build/reports/test")
+    reportsDirectory = layout.buildDirectory.dir("reports/jacoco/")
 }
 
 tasks.test{
