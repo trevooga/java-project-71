@@ -13,7 +13,7 @@ build:
 	@./gradlew clean installDist
 
 report:
-	@./gradlew jacocoTestReport
+	@./gradlew jacocoTestReport -t
 
 lint:
 	@./gradlew checkstyleMain
