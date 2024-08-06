@@ -1,7 +1,7 @@
 package hexlet.code;
 
 
-import utils.Parsing;
+import utils.Parser;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import java.util.Map;
 public class Differ {
     public static String generate(File file1, File file2) throws IOException {
         StringBuilder differenceOfFiles = new StringBuilder("{\n");
-        Map<String, Object> mapOfFile1 = Parsing.parse(file1);
-        Map<String, Object> mapOfFile2 = Parsing.parse(file2);
+        Map<String, Object> mapOfFile1 = Parser.parse(file1);
+        Map<String, Object> mapOfFile2 = Parser.parse(file2);
 
         for (Map.Entry<String, Object> entry1 : mapOfFile1.entrySet()) { // Проходим по элементам первого файла
             String key1 = entry1.getKey();
