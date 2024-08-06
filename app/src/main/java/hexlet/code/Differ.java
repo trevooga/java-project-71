@@ -23,26 +23,26 @@ public class Differ {
             if (mapOfFile1.containsKey(key) && mapOfFile2.containsKey(key)) {
                 if (value1 == null || value2 == null) {
                     if (value1 == null && value2 != null) {
-                        differenceOfFiles.append("  - ").append(key).append(": ").append(value1).append("\n");
-                        differenceOfFiles.append("  + ").append(key).append(": ").append(value2).append("\n");
+                        differenceOfFiles.append("- ").append(key).append(": ").append(value1).append("\n");
+                        differenceOfFiles.append("+ ").append(key).append(": ").append(value2).append("\n");
                     } else if (value1 != null && value2 == null) {
-                        differenceOfFiles.append("  - ").append(key).append(": ").append(value1).append("\n");
-                        differenceOfFiles.append("  + ").append(key).append(": ").append(value2).append("\n");
+                        differenceOfFiles.append("- ").append(key).append(": ").append(value1).append("\n");
+                        differenceOfFiles.append("+ ").append(key).append(": ").append(value2).append("\n");
                     } else {
-                        differenceOfFiles.append("    ").append(key).append(": ").append(value2).append("\n");
+                        differenceOfFiles.append("  ").append(key).append(": ").append(value2).append("\n");
                     }
                 } else {
                     if (!value1.equals(value2)) {
-                        differenceOfFiles.append("  - ").append(key).append(": ").append(value1).append("\n");
-                        differenceOfFiles.append("  + ").append(key).append(": ").append(value2).append("\n");
+                        differenceOfFiles.append("- ").append(key).append(": ").append(value1).append("\n");
+                        differenceOfFiles.append("+ ").append(key).append(": ").append(value2).append("\n");
                     } else {
-                        differenceOfFiles.append("    ").append(key).append(": ").append(value2).append("\n");
+                        differenceOfFiles.append("  ").append(key).append(": ").append(value2).append("\n");
                     }
                 }
             } else if (mapOfFile1.containsKey(key)) {
-                differenceOfFiles.append("  - ").append(key).append(": ").append(value1).append("\n");
+                differenceOfFiles.append("- ").append(key).append(": ").append(value1).append("\n");
             } else {
-                differenceOfFiles.append("  + ").append(key).append(": ").append(value2).append("\n");
+                differenceOfFiles.append("+ ").append(key).append(": ").append(value2).append("\n");
             }
         }
 
