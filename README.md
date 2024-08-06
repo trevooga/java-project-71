@@ -13,7 +13,7 @@ __________________________________________________
 `make clean` to delete build \
 `make run-dist file1=yourFile1Path file2=yourFile2Path` or `make file1=yourFile1Path file2=yourFile2Path` to run the app
 ## Preview
-**With JSON files**
+**With JSON files**  
 [![asciicast](https://asciinema.org/a/R1hYUBGCQZcn5WmheVoHRo4Z2.svg)](https://asciinema.org/a/R1hYUBGCQZcn5WmheVoHRo4Z2)
 
 **With YAML files**
