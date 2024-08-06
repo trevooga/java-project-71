@@ -46,7 +46,7 @@ public class TestsOfParser {
         correctMap.put("follow", false);
 
 
-        assertEquals(correctMap, Parser.parse(new File("src/test/resources/file1.yaml")));
+        assertEquals(correctMap, Parser.parse(new File("src/test/resources/YAMLfiles/file1.yaml")));
     }
 
     @Test
