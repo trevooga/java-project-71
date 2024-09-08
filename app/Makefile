@@ -3,6 +3,9 @@
 run-dist:
 	@./build/install/app/bin/app $(file1) $(file2)
 
+-f :
+	@./build/install/app/bin/app $(f) $(file1) $(file2)
+
 setup:
 	@./gradlew wrapper --gradle-version 8.9
 

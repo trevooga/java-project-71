@@ -1,5 +1,7 @@
 package hexlet.code.utils;
 
+import java.util.Map;
+
 public class Proccessing {
     public static String processComplexValue(Object value) {
         if (value != null && (value.toString().contains("{") || value.toString().contains("["))) {
@@ -32,5 +34,18 @@ public class Proccessing {
 
     public static String addValue(String key, Object value) {
         return "  " + key + ": " + value;
+    }
+
+    public static void updateValue(Map<String, Object> map, String key, Object value1, Object value2) {
+        map.put("- " + key, value1);
+        map.put("+ " + key, value2);
+    }
+
+    public static void removeValue(Map<String, Object> map,String key, Object value1) {
+        map.put("- " + key, value1);
+    }
+
+    public static void addValue(Map<String, Object> map,String key, Object value1) {
+        map.put("  " + key, value1);
     }
 }

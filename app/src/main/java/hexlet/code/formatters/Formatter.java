@@ -10,6 +10,8 @@ public class Formatter {
         switch (formatName) {
             case "plain":
                 return Plain.generate(map1, map2);
+            case "json":
+                return Json.jsonGenerate(map1, map2);
             default:
                 return Stylish.generate(map1, map2);
         }

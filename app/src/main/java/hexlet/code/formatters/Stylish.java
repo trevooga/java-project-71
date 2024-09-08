@@ -22,7 +22,6 @@ public class Stylish {
                 if (value1 == null || value2 == null) {
                     if (value1 == null && value2 != null) {
                         differenceOfFiles.append(removeValue(key, value1)).append("\n");
-
                         differenceOfFiles.append(updateValue(key, value2)).append("\n");
                     } else if (value1 != null && value2 == null) {
                         differenceOfFiles.append(removeValue(key, value1)).append("\n");
