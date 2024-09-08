@@ -41,11 +41,11 @@ public class Proccessing {
         map.put("+ " + key, value2);
     }
 
-    public static void removeValue(Map<String, Object> map,String key, Object value1) {
+    public static void removeValue(Map<String, Object> map, String key, Object value1) {
         map.put("- " + key, value1);
     }
 
-    public static void addValue(Map<String, Object> map,String key, Object value1) {
+    public static void addValue(Map<String, Object> map, String key, Object value1) {
         map.put("  " + key, value1);
     }
 }
