@@ -6,7 +6,7 @@ plugins {
     id("io.freefair.lombok") version "6.5.1"
 }
 
-group = "org.example"
+group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
 
