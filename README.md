@@ -18,3 +18,9 @@ __________________________________________________
 
 **With YAML files**
 [![asciicast](https://asciinema.org/a/gS0456gLfNrvGlP0dyBCdd0tb.svg)](https://asciinema.org/a/gS0456gLfNrvGlP0dyBCdd0tb)
+
+**Plain formatter**
+[![asciicast](https://asciinema.org/a/OMoZtRXyeJ0XvEWRQ0UcHb5i9.svg)](https://asciinema.org/a/OMoZtRXyeJ0XvEWRQ0UcHb5i9)
+
+**JSON formatter**
+[![asciicast](https://asciinema.org/a/7odRsaIoJ4QLltoy1LxX7QizH.svg)](https://asciinema.org/a/7odRsaIoJ4QLltoy1LxX7QizH)
