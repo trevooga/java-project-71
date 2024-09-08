@@ -1,4 +1,4 @@
-package utils;
+package hexlet.code.utils;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;

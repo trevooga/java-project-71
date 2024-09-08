@@ -1,7 +1,8 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Plain;
 import picocli.CommandLine;
-import  picocli.CommandLine.Parameters;
+import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Option;
 
 import java.io.File;
@@ -30,7 +31,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(Differ.generate(filepath1, filepath2));
+            System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (IOException e) {
             e.printStackTrace();
         }

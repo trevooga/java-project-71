@@ -3,6 +3,7 @@ plugins {
     application
     jacoco
     id("checkstyle")
+    id("io.freefair.lombok") version "6.5.1"
 }
 
 group = "org.example"
@@ -21,6 +22,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.6")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.2")
+    implementation("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
 checkstyle {
@@ -44,4 +47,5 @@ tasks.jacocoTestReport {
         html.required.set(true)
     }
 }
+
 
