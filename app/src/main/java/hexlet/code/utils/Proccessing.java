@@ -25,15 +25,15 @@ public class Proccessing {
     }
 
     public static String removeValue(String key, Object value) {
-        return "- " + key + ": " + value;
+        return "  - " + key + ": " + value;
     }
 
     public static String updateValue(String key, Object value) {
-        return "+ " + key + ": " + value;
+        return "  + " + key + ": " + value;
     }
 
     public static String addValue(String key, Object value) {
-        return "  " + key + ": " + value;
+        return "    " + key + ": " + value;
     }
 
     public static void updateValue(Map<String, Object> map, String key, Object value1, Object value2) {
