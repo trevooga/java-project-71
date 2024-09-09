@@ -175,13 +175,20 @@ public class TestsOfParser {
 
     @Test
     void jsonTest() throws IOException {
-        String expected = "{\"+ numbers4\":[4,5,6],\"- setting2\":200,\"- setting1\":\"Some value\",\"" +
-                "- default\":null,\"+ numbers2\":[22,33,44,55],\"- setting3\":true,\"+ setting1\"" +
-                ":\"Another value\",\"+ checked\":true,\"+ setting2\":300,\"+ key2\":\"value2\",\"" +
-                "+ setting3\":\"none\",\"- checked\":false,\"+ id\":null,\"  numbers1\":[1,2,3,4],\"" +
-                "- obj1\":null,\"  chars1\":[\"a\",\"b\",\"c\"],\"+ default\":[\"value1\",\"value2\"],\"" +
-                "- numbers4\":null,\"+ obj1\":{\"nestedKey\":\"value\",\"isNested\":true},\"- key2\":null,\"" +
-                "- numbers3\":[3,4,5],\"- id\":45,\"- key1\":\"value1\",\"- chars2\":[\"d\",\"e\",\"f\"],\"" +
+        String expected = "{\"+ numbers4\":[4,5,6],\"- setting2\":200,\"- setting1\":\"Some value\",\""
+                +
+                "- default\":null,\"+ numbers2\":[22,33,44,55],\"- setting3\":true,\"+ setting1\""
+                +
+                ":\"Another value\",\"+ checked\":true,\"+ setting2\":300,\"+ key2\":\"value2\",\""
+                +
+                "+ setting3\":\"none\",\"- checked\":false,\"+ id\":null,\"  numbers1\":[1,2,3,4],\""
+                +
+                "- obj1\":null,\"  chars1\":[\"a\",\"b\",\"c\"],\"+ default\":[\"value1\",\"value2\"],\""
+                +
+                "- numbers4\":null,\"+ obj1\":{\"nestedKey\":\"value\",\"isNested\":true},\"- key2\":null,\""
+                +
+                "- numbers3\":[3,4,5],\"- id\":45,\"- key1\":\"value1\",\"- chars2\":[\"d\",\"e\",\"f\"],\""
+                +
                 "+ chars2\":false,\"- numbers2\":[2,3,4,5]}";
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
