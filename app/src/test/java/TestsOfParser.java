@@ -19,17 +19,17 @@ public class TestsOfParser {
     void generateTest() throws IOException {
         String correctFile = "{\n"
                 +
-                "- follow: false\n"
+                "  - follow: false\n"
                 +
-                "  host: hexlet.io\n"
+                "    host: hexlet.io\n"
                 +
-                "- proxy: 123.234.53.22\n"
+                "  - proxy: 123.234.53.22\n"
                 +
-                "- timeout: 50\n"
+                "  - timeout: 50\n"
                 +
-                "+ timeout: 20\n"
+                "  + timeout: 20\n"
                 +
-                "+ verbose: true\n"
+                "  + verbose: true\n"
                 +
                 "}";
         String file1 = "src/test/resources/JSONfiles/file1.json";
@@ -88,51 +88,51 @@ public class TestsOfParser {
     void testOfInsertedFiles() throws IOException {
         String correctAnswer = "{\n"
                 +
-                "  chars1: [a, b, c]\n"
+                "    chars1: [a, b, c]\n"
                 +
-                "- chars2: [d, e, f]\n"
+                "  - chars2: [d, e, f]\n"
                 +
-                "+ chars2: false\n"
+                "  + chars2: false\n"
                 +
-                "- checked: false\n"
+                "  - checked: false\n"
                 +
-                "+ checked: true\n"
+                "  + checked: true\n"
                 +
-                "- default: null\n"
+                "  - default: null\n"
                 +
-                "+ default: [value1, value2]\n"
+                "  + default: [value1, value2]\n"
                 +
-                "- id: 45\n"
+                "  - id: 45\n"
                 +
-                "+ id: null\n"
+                "  + id: null\n"
                 +
-                "- key1: value1\n"
+                "  - key1: value1\n"
                 +
-                "+ key2: value2\n"
+                "  + key2: value2\n"
                 +
-                "  numbers1: [1, 2, 3, 4]\n"
+                "    numbers1: [1, 2, 3, 4]\n"
                 +
-                "- numbers2: [2, 3, 4, 5]\n"
+                "  - numbers2: [2, 3, 4, 5]\n"
                 +
-                "+ numbers2: [22, 33, 44, 55]\n"
+                "  + numbers2: [22, 33, 44, 55]\n"
                 +
-                "- numbers3: [3, 4, 5]\n"
+                "  - numbers3: [3, 4, 5]\n"
                 +
-                "+ numbers4: [4, 5, 6]\n"
+                "  + numbers4: [4, 5, 6]\n"
                 +
-                "+ obj1: {nestedKey=value, isNested=true}\n"
+                "  + obj1: {nestedKey=value, isNested=true}\n"
                 +
-                "- setting1: Some value\n"
+                "  - setting1: Some value\n"
                 +
-                "+ setting1: Another value\n"
+                "  + setting1: Another value\n"
                 +
-                "- setting2: 200\n"
+                "  - setting2: 200\n"
                 +
-                "+ setting2: 300\n"
+                "  + setting2: 300\n"
                 +
-                "- setting3: true\n"
+                "  - setting3: true\n"
                 +
-                "+ setting3: none\n"
+                "  + setting3: none\n"
                 +
                 "}";
         String file1 = "src/test/resources/JSONfiles/file3.json";
