@@ -40,8 +40,9 @@ public class TestsOfParser {
     @Test
     void parsingTest() throws IOException {
         TreeMap correctMap = new TreeMap<String, Object>();
+        final int digit = 50;
         correctMap.put("host", "hexlet.io");
-        correctMap.put("timeout", 50);
+        correctMap.put("timeout", digit);
         correctMap.put("proxy", "123.234.53.22");
         correctMap.put("follow", false);
 
