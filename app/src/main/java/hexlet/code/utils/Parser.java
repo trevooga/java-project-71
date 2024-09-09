@@ -13,7 +13,8 @@ import java.util.TreeMap;
 
 public class Parser {
     public static TreeMap<String, Object> parse(File file) throws IOException {
-        String extension = file.getPath().substring(file.getPath().length() - 4);
+        byte ecstDigit = 4;
+        String extension = file.getPath().substring(file.getPath().length() - ecstDigit);
         if (!extension.equals("json")) {
             return new TreeMap<>(yamlMap(file));
         } else {
