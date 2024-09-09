@@ -32,8 +32,8 @@ public class TestsOfParser {
                 "+ verbose: true\n"
                 +
                 "}";
-        File file1 = new File("src/test/resources/JSONfiles/file1.json");
-        File file2 = new File("src/test/resources/JSONfiles/file2.json");
+        String file1 = "src/test/resources/JSONfiles/file1.json";
+        String file2 = "src/test/resources/JSONfiles/file2.json";
         assertEquals(correctFile, Differ.generate(file1, file2, "stylish"));
     }
 
@@ -51,12 +51,12 @@ public class TestsOfParser {
 
     @Test
     void testGenerateDiff() {
-        File file1 = new File("src/test/resources/JSONfiles/file1.json");
-        File file2 = new File("src/test/resources/JSONfiles/file2.json");
+        String file1 = "src/test/resources/JSONfiles/file1.json";
+        String file2 = "src/test/resources/JSONfiles/file2.json";
 
         App app = new App();
         CommandLine commandLine = new CommandLine(app);
-        commandLine.execute("-f", "stylish", file1.getPath(), file2.getPath());
+        commandLine.execute("-f", "stylish", file1, file2);
 
         try {
             String result = Differ.generate(file1, file2, "stylish");
@@ -69,12 +69,12 @@ public class TestsOfParser {
 
     @Test
     void testYamlGenerateDiff() {
-        File file1 = new File("src/test/resources/YAMLfiles/file1.yaml");
-        File file2 = new File("src/test/resources/YAMLfiles/file2.yaml");
+        String file1 = "src/test/resources/YAMLfiles/file1.yaml";
+        String file2 = "src/test/resources/YAMLfiles/file2.yaml";
 
         App app = new App();
         CommandLine commandLine = new CommandLine(app);
-        commandLine.execute("-f", "stylish", file1.getPath(), file2.getPath());
+        commandLine.execute("-f", "stylish", file1, file2);
 
         try {
             String result = Differ.generate(file1, file2, "stylish");
@@ -135,8 +135,8 @@ public class TestsOfParser {
                 "+ setting3: none\n"
                 +
                 "}";
-        File file1 = new File("src/test/resources/JSONfiles/file3.json");
-        File file2 = new File("src/test/resources/JSONfiles/file4.json");
+        String file1 = "src/test/resources/JSONfiles/file3.json";
+        String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(correctAnswer, Differ.generate(file1, file2, "stylish"));
     }
 
@@ -167,8 +167,8 @@ public class TestsOfParser {
                 "Property 'setting2' was updated. From 200 to 300\n"
                 +
                 "Property 'setting3' was updated. From true to 'none'";
-        File file1 = new File("src/test/resources/JSONfiles/file3.json");
-        File file2 = new File("src/test/resources/JSONfiles/file4.json");
+        String file1 = "src/test/resources/JSONfiles/file3.json";
+        String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(Differ.generate(file1, file2, "plain"), answer);
     }
 }
