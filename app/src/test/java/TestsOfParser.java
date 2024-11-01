@@ -2,7 +2,7 @@ import hexlet.code.App;
 import hexlet.code.Differ;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
-import hexlet.code.utils.Parser;
+import hexlet.code.Parser;
 
 import java.io.File;
 import java.io.IOException;

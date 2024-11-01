@@ -10,8 +10,8 @@ import java.io.IOException;
         description = "Compares two configuration files and shows a difference.")
 
 public final class App implements Runnable {
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format = "stylish";
+    @Option(names = {"-f", "--format"}, description = "output format", defaultValue = "stylish")
+    private String format;
 
     @Parameters(index = "0", description = "path to first file")
     private String filepath1;
