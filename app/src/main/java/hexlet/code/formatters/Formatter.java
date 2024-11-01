@@ -12,8 +12,10 @@ public class Formatter {
                 return Plain.generate(map1, map2);
             case "json":
                 return Json.jsonGenerate(map1, map2);
-            default:
+            case "stylish":
                 return Stylish.generate(map1, map2);
+            default:
+                throw new IllegalArgumentException("This style is not supported: " + formatName);
         }
     }
 }
