@@ -28,7 +28,10 @@ public class Differ {
         TreeSet<String> allKeys = new TreeSet<>(mapOfFile1.keySet());
         allKeys.addAll(mapOfFile2.keySet());
 
-        return Formatter.format(DifferenceFinder.difference(mapOfFile1, mapOfFile2, allKeys), formatName, allKeys);
+        Map<String, Map<String, Object>> differenceOfMaps = DifferenceFinder.
+                difference(mapOfFile1, mapOfFile2, allKeys);
+
+        return Formatter.format(differenceOfMaps, formatName, allKeys);
     }
 
     public static String generate(String file1, String file2) throws IOException {
