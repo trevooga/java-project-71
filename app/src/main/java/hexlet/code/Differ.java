@@ -23,7 +23,8 @@ public class Differ {
             mapOfFile1 = Parser.yamlMap(contentFile1);
             mapOfFile2 = Parser.yamlMap(contentFile2);
         }
-        return Formatter.format(mapOfFile1, mapOfFile2, formatName);
+
+        return Formatter.format(DifferenceFinder.Difference(mapOfFile1, mapOfFile2), formatName);
     }
 
     public static String generate(String file1, String file2) throws IOException {

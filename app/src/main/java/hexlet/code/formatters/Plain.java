@@ -2,40 +2,38 @@ package hexlet.code.formatters;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.TreeSet;
-
 
 public class Plain {
-    public static String generate(Map<String, Object> map1, Map<String, Object> map2) throws IOException {
+    public static String generate(Map<String, Map<String, Object>> differences) throws IOException {
         StringBuilder differenceOfFiles = new StringBuilder();
-        TreeSet<String> allKeys = new TreeSet<>(map1.keySet());
-        allKeys.addAll(map2.keySet());
 
-        for (String key : allKeys) {
-            Object value1 = map1.get(key);
-            Object value2 = map2.get(key);
-            String processedValue1 = processComplexValue(value1);
-            String processedValue2 = processComplexValue(value2);
-
-            if (map1.containsKey(key) && map2.containsKey(key)) {
-                if (value1 == null && value2 == null) {
-                    continue;
-                } else if (value1 == null) {
-                    differenceOfFiles.append("Property '" + key + "' was added with value: " + processedValue2 + "\n");
-                } else if (value2 == null) {
-                    differenceOfFiles.append("Property '" + key + "' was removed\n");
-                } else if (!value1.equals(value2)) {
-                    differenceOfFiles.append("Property '" + key + "' was updated. From "
-                            + processedValue1 + " to " + processedValue2 + "\n");
-                }
-            } else if (map1.containsKey(key)) {
-                differenceOfFiles.append("Property '" + key + "' was removed\n");
-            } else {
-                differenceOfFiles.append("Property '" + key + "' was added with value: " + processedValue2 + "\n");
+        if (differences.containsKey("ADD")) {
+            for (Map.Entry<String, Object> entry : differences.get("ADD").entrySet()) {
+                differenceOfFiles.append("Property '" + entry.getKey() + "' was added with value: " + processComplexValue(entry.getValue()) + "\n");
             }
         }
+
+        if (differences.containsKey("DELETE")) {
+            for (Map.Entry<String, Object> entry : differences.get("DELETE").entrySet()) {
+                differenceOfFiles.append("Property '" + entry.getKey() + "' was removed\n");
+            }
+        }
+
+        if (differences.containsKey("NOTCHANGED")) {
+            for (Map.Entry<String, Object> entry : differences.get("NOTCHANGED").entrySet()) {
+                // Сравниваем старое и новое значение
+                Object oldValue = entry.getValue();
+                Object newValue = differences.get("ADD").get(entry.getKey());
+                if (newValue != null && !oldValue.equals(newValue)) {
+                    differenceOfFiles.append("Property '" + entry.getKey() + "' was updated. From "
+                            + processComplexValue(oldValue) + " to " + processComplexValue(newValue) + "\n");
+                }
+            }
+        }
+
         return differenceOfFiles.toString().trim();
     }
+
     public static String processComplexValue(Object value) {
         if (value != null && (value.toString().contains("{") || value.toString().contains("["))) {
             return "[complex value]";
