@@ -10,7 +10,6 @@ public class DifferenceFinder {
         allKeys.addAll(map2.keySet());
         Map<String, Map<String, Object>> difference = new HashMap<>();
 
-        // Инициализация карт для добавленных, удаленных и неизмененных
         difference.put("ADD", new HashMap<>());
         difference.put("DELETE", new HashMap<>());
         difference.put("NOTCHANGED", new HashMap<>());
@@ -21,7 +20,7 @@ public class DifferenceFinder {
 
             if (map1.containsKey(key) && map2.containsKey(key)) {
                 if (value1 == null && value2 == null) {
-                    continue; // оба значения null
+                    continue;
                 } else if (value1 == null) {
                     difference.get("ADD").put(key, value2);
                 } else if (value2 == null) {
@@ -30,7 +29,7 @@ public class DifferenceFinder {
                     difference.get("DELETE").put(key, value1);
                     difference.get("ADD").put(key, value2);
                 } else {
-                    difference.get("NOTCHANGED").put(key, value1); // или value2
+                    difference.get("NOTCHANGED").put(key, value1);
                 }
             } else if (map1.containsKey(key)) {
                 difference.get("DELETE").put(key, value1);

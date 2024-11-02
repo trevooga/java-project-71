@@ -7,21 +7,18 @@ public class Stylish {
     public static String generate(Map<String, Map<String, Object>> differences) throws IOException {
         StringBuilder differenceOfFiles = new StringBuilder("{\n");
 
-        // Обрабатываем добавленные элементы
         if (differences.containsKey("ADD")) {
             for (Map.Entry<String, Object> entry : differences.get("ADD").entrySet()) {
                 differenceOfFiles.append("  + " + entry.getKey() + ": " + entry.getValue()).append("\n");
             }
         }
 
-        // Обрабатываем удаленные элементы
         if (differences.containsKey("DELETE")) {
             for (Map.Entry<String, Object> entry : differences.get("DELETE").entrySet()) {
                 differenceOfFiles.append("  - " + entry.getKey() + ": " + entry.getValue()).append("\n");
             }
         }
 
-        // Обрабатываем неизмененные элементы
         if (differences.containsKey("NOTCHANGED")) {
             for (Map.Entry<String, Object> entry : differences.get("NOTCHANGED").entrySet()) {
                 differenceOfFiles.append("    " + entry.getKey() + ": " + entry.getValue()).append("\n");
