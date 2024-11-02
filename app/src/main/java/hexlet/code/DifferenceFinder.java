@@ -2,10 +2,12 @@ package hexlet.code;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class DifferenceFinder {
-    public static Map<String, Map<String, Object>> Difference(Map<String, Object> map1, Map<String, Object> map2) {
+    public static Map<String, Map<String, Object>> Difference(Map<String, Object> map1, Map<String, Object> map2,
+                                                              Set<String> keys) {
         TreeSet<String> allKeys = new TreeSet<>(map1.keySet());
         allKeys.addAll(map2.keySet());
         Map<String, Map<String, Object>> difference = new HashMap<>();
@@ -22,8 +24,11 @@ public class DifferenceFinder {
                 if (value1 == null && value2 == null) {
                     continue;
                 } else if (value1 == null) {
+                    difference.get("DELETE").put(key, value1);
                     difference.get("ADD").put(key, value2);
                 } else if (value2 == null) {
+
+                    difference.get("ADD").put(key, null);
                     difference.get("DELETE").put(key, value1);
                 } else if (!value1.equals(value2)) {
                     difference.get("DELETE").put(key, value1);
@@ -32,8 +37,10 @@ public class DifferenceFinder {
                     difference.get("NOTCHANGED").put(key, value1);
                 }
             } else if (map1.containsKey(key)) {
+                // Если ключ есть только в map1
                 difference.get("DELETE").put(key, value1);
             } else {
+                // Если ключ есть только в map2
                 difference.get("ADD").put(key, value2);
             }
         }

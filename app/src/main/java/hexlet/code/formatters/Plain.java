@@ -2,32 +2,28 @@ package hexlet.code.formatters;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class Plain {
-    public static String generate(Map<String, Map<String, Object>> differences) throws IOException {
+    public static String generate(Map<String, Map<String, Object>> differences, TreeSet<String> allKeys) throws IOException {
         StringBuilder differenceOfFiles = new StringBuilder();
 
-        if (differences.containsKey("ADD")) {
-            for (Map.Entry<String, Object> entry : differences.get("ADD").entrySet()) {
-                differenceOfFiles.append("Property '" + entry.getKey() + "' was added with value: " + processComplexValue(entry.getValue()) + "\n");
-            }
-        }
+        for (String key : allKeys) {
+            boolean isAdded = differences.get("ADD") != null && differences.get("ADD").containsKey(key);
+            boolean isDeleted = differences.get("DELETE") != null && differences.get("DELETE").containsKey(key);
+            boolean isNotChanged = differences.get("NOTCHANGED") != null && differences.get("NOTCHANGED").containsKey(key);
 
-        if (differences.containsKey("DELETE")) {
-            for (Map.Entry<String, Object> entry : differences.get("DELETE").entrySet()) {
-                differenceOfFiles.append("Property '" + entry.getKey() + "' was removed\n");
-            }
-        }
-
-        if (differences.containsKey("NOTCHANGED")) {
-            for (Map.Entry<String, Object> entry : differences.get("NOTCHANGED").entrySet()) {
-                // Сравниваем старое и новое значение
-                Object oldValue = entry.getValue();
-                Object newValue = differences.get("ADD").get(entry.getKey());
-                if (newValue != null && !oldValue.equals(newValue)) {
-                    differenceOfFiles.append("Property '" + entry.getKey() + "' was updated. From "
-                            + processComplexValue(oldValue) + " to " + processComplexValue(newValue) + "\n");
-                }
+            if (isAdded && isDeleted) {
+                differenceOfFiles.append("Property '").append(key).append("' was updated. From ")
+                        .append(processComplexValue(differences.get("DELETE").get(key))).append(" to ")
+                        .append(processComplexValue(differences.get("ADD").get(key))).append("\n");
+            } else if (isAdded) {
+                differenceOfFiles.append("Property '").append(key).append("' was added with value: ")
+                        .append(processComplexValue(differences.get("ADD").get(key))).append("\n");
+            } else if (isDeleted) {
+                differenceOfFiles.append("Property '").append(key).append("' was removed\n");
+            } else if (isNotChanged) {
+                // Do nothing for unchanged properties
             }
         }
 

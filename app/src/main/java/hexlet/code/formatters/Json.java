@@ -3,28 +3,21 @@ package hexlet.code.formatters;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class Json {
-    public static String jsonGenerate(Map<String, Map<String, Object>> differences) throws IOException {
-        Map<String, Object> resultMap = new HashMap<>();
+    public static String jsonGenerate(Map<String, Map<String, Object>> differences, TreeSet<String> allKeys) throws IOException {
+        Map<String, Object> resultMap = new LinkedHashMap<>();
 
-        if (differences.containsKey("ADD")) {
-            for (Map.Entry<String, Object> entry : differences.get("ADD").entrySet()) {
-                resultMap.put("+ " + entry.getKey(), entry.getValue());
-            }
-        }
-
-        if (differences.containsKey("DELETE")) {
-            for (Map.Entry<String, Object> entry : differences.get("DELETE").entrySet()) {
-                resultMap.put("- " + entry.getKey(), entry.getValue());
-            }
-        }
-
-        if (differences.containsKey("NOTCHANGED")) {
-            for (Map.Entry<String, Object> entry : differences.get("NOTCHANGED").entrySet()) {
-                resultMap.put("  " + entry.getKey(), entry.getValue());
+        for (String key : allKeys) {
+            if (differences.get("ADD") != null && differences.get("ADD").containsKey(key)) {
+                resultMap.put("+ " + key, differences.get("ADD").get(key));
+            } else if (differences.get("DELETE") != null && differences.get("DELETE").containsKey(key)) {
+                resultMap.put("- " + key, differences.get("DELETE").get(key));
+            } else if (differences.get("NOTCHANGED") != null && differences.get("NOTCHANGED").containsKey(key)) {
+                resultMap.put("  " + key, differences.get("NOTCHANGED").get(key));
             }
         }
 
