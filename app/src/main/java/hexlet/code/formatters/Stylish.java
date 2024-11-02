@@ -5,13 +5,15 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class Stylish {
-    public static String generate(Map<String, Map<String, Object>> differences, TreeSet<String> allKeys) throws IOException {
+    public static String generate(Map<String, Map<String, Object>> differences,
+                                  TreeSet<String> allKeys) throws IOException {
         StringBuilder differenceOfFiles = new StringBuilder("{\n");
 
         for (String key : allKeys) {
             boolean isAdded = differences.get("ADD") != null && differences.get("ADD").containsKey(key);
             boolean isDeleted = differences.get("DELETE") != null && differences.get("DELETE").containsKey(key);
-            boolean isNotChanged = differences.get("NOTCHANGED") != null && differences.get("NOTCHANGED").containsKey(key);
+            boolean isNotChanged = differences.get("NOTCHANGED") != null
+                    && differences.get("NOTCHANGED").containsKey(key);
 
             if (isAdded && isDeleted) {
                 differenceOfFiles.append("  - ").append(key).append(": ")

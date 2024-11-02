@@ -6,7 +6,8 @@ import java.util.TreeSet;
 
 public class Formatter {
 
-    public static String format(Map<String, Map<String, Object>> differences, String formatName, TreeSet<String> allKeys) throws IOException {
+    public static String format(Map<String, Map<String, Object>> differences,
+                                String formatName, TreeSet<String> allKeys) throws IOException {
         switch (formatName.toLowerCase()) {
             case "plain":
                 return Plain.generate(differences, allKeys);

@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class DifferenceFinder {
-    public static Map<String, Map<String, Object>> Difference(Map<String, Object> map1, Map<String, Object> map2,
+    public static Map<String, Map<String, Object>> difference(Map<String, Object> map1, Map<String, Object> map2,
                                                               Set<String> keys) {
         TreeSet<String> allKeys = new TreeSet<>(map1.keySet());
         allKeys.addAll(map2.keySet());
