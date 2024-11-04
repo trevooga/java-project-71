@@ -1,34 +1,36 @@
 package hexlet.code.formatters;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.TreeSet;
+import hexlet.code.Status;
+
+import java.util.List;
 
 public class Stylish {
-    public static String generate(Map<String, Map<String, Object>> differences,
-                                  TreeSet<String> allKeys) throws IOException {
+    public static String generate(List<Status> differences) throws Exception {
         StringBuilder differenceOfFiles = new StringBuilder("{\n");
 
-        for (String key : allKeys) {
-            boolean isAdded = differences.get("ADD") != null && differences.get("ADD").containsKey(key);
-            boolean isDeleted = differences.get("DELETE") != null && differences.get("DELETE").containsKey(key);
-            boolean isNotChanged = differences.get("NOTCHANGED") != null
-                    && differences.get("NOTCHANGED").containsKey(key);
-
-            if (isAdded && isDeleted) {
-                differenceOfFiles.append("  - ").append(key).append(": ")
-                        .append((differences.get("DELETE").get(key))).append("\n");
-                differenceOfFiles.append("  + ").append(key).append(": ")
-                        .append((differences.get("ADD").get(key))).append("\n");
-            } else if (isAdded) {
-                differenceOfFiles.append("  + ").append(key).append(": ")
-                        .append((differences.get("ADD").get(key))).append("\n");
-            } else if (isDeleted) {
-                differenceOfFiles.append("  - ").append(key).append(": ")
-                        .append((differences.get("DELETE").get(key))).append("\n");
-            } else if (isNotChanged) {
-                differenceOfFiles.append("    ").append(key).append(": ")
-                        .append((differences.get("NOTCHANGED").get(key))).append("\n");
+        for (Status status : differences) {
+            String key = (String) status.getKey(); // Получаем ключ
+            switch (status.getStatusName()) {
+                case Status.ADDED:
+                    differenceOfFiles.append("  + ").append(key).append(": ")
+                            .append(status.getNewValue()).append("\n");
+                    break;
+                case Status.DELETED:
+                    differenceOfFiles.append("  - ").append(key).append(": ")
+                            .append(status.getOldValue()).append("\n");
+                    break;
+                case Status.CHANGED:
+                    differenceOfFiles.append("  - ").append(key).append(": ")
+                            .append(status.getOldValue()).append("\n");
+                    differenceOfFiles.append("  + ").append(key).append(": ")
+                            .append(status.getNewValue()).append("\n");
+                    break;
+                case Status.UNCHANGED:
+                    differenceOfFiles.append("    ").append(key).append(": ")
+                            .append(status.getOldValue()).append("\n");
+                    break;
+                default:
+                    throw new Exception("Unidentified key");
             }
         }
 

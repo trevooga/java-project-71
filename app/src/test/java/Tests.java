@@ -2,13 +2,12 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestsOfParser {
+public class Tests {
 
     private static String resultJson;
     private static String resultPlain;
@@ -39,55 +38,55 @@ public class TestsOfParser {
     }
 
     @Test
-    void defaultTest() throws IOException {
+    void defaultTest() throws Exception {
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(Differ.generate(file1, file2), resultStylish);
     }
 
     @Test
-    void stylishTest() throws IOException {
+    void stylishTest() throws Exception {
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(Differ.generate(file1, file2), resultStylish);
     }
 
     @Test
-    void plainTester() throws IOException {
+    void plainTester() throws Exception {
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(Differ.generate(file1, file2, "plain"), resultPlain);
     }
 
     @Test
-    void jsonTest() throws IOException {
+    void jsonTest() throws Exception {
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
         assertEquals(Differ.generate(file1, file2, "json"), resultJson);
     }
     @Test
-    void jsonYamlTest() throws IOException {
+    void jsonYamlTest() throws Exception {
         String file1 = "src/test/resources/YAMLfiles/file1.yaml";
         String file2 = "src/test/resources/YAMLfiles/file2.yaml";
         assertEquals(Differ.generate(file1, file2, "json"), yamlResultJson);
     }
 
     @Test
-    void stylishYamlTest() throws IOException {
+    void stylishYamlTest() throws Exception {
         String file1 = "src/test/resources/YAMLfiles/file1.yaml";
         String file2 = "src/test/resources/YAMLfiles/file2.yaml";
         assertEquals(Differ.generate(file1, file2, "stylish"), yamlResultStylish);
     }
 
     @Test
-    void defaultYamlTest() throws IOException {
+    void defaultYamlTest() throws Exception {
         String file1 = "src/test/resources/YAMLfiles/file1.yaml";
         String file2 = "src/test/resources/YAMLfiles/file2.yaml";
         assertEquals(Differ.generate(file1, file2), yamlResultStylish);
     }
 
     @Test
-    void plainYamlTest() throws IOException {
+    void plainYamlTest() throws Exception {
         String file1 = "src/test/resources/YAMLfiles/file1.yaml";
         String file2 = "src/test/resources/YAMLfiles/file2.yaml";
         assertEquals(Differ.generate(file1, file2, "plain"), yamlResultPlain);

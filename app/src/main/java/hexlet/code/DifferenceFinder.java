@@ -1,49 +1,42 @@
 package hexlet.code;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
+import java.util.Objects;
 
 public class DifferenceFinder {
-    public static Map<String, Map<String, Object>> difference(Map<String, Object> map1, Map<String, Object> map2,
-                                                              Set<String> keys) {
-        TreeSet<String> allKeys = new TreeSet<>(map1.keySet());
-        allKeys.addAll(map2.keySet());
-        Map<String, Map<String, Object>> difference = new HashMap<>();
+    public static List<Status> difference(Map<String, Object> map1, Map<String, Object> map2) {
+        TreeSet<String> allKeys = getAllKeys(map1, map2);
 
-        difference.put("ADD", new HashMap<>());
-        difference.put("DELETE", new HashMap<>());
-        difference.put("NOTCHANGED", new HashMap<>());
-
+        List<Status> statuses = new ArrayList<>();
         for (String key : allKeys) {
             Object value1 = map1.get(key);
             Object value2 = map2.get(key);
 
             if (map1.containsKey(key) && map2.containsKey(key)) {
-                if (value1 == null && value2 == null) {
-                    continue;
-                } else if (value1 == null) {
-                    difference.get("DELETE").put(key, value1);
-                    difference.get("ADD").put(key, value2);
-                } else if (value2 == null) {
-
-                    difference.get("ADD").put(key, null);
-                    difference.get("DELETE").put(key, value1);
-                } else if (!value1.equals(value2)) {
-                    difference.get("DELETE").put(key, value1);
-                    difference.get("ADD").put(key, value2);
-                } else {
-                    difference.get("NOTCHANGED").put(key, value1);
+                if (value1 != null && value2 != null && !value1.equals(value2)) {
+                    statuses.add(new Status(Status.CHANGED, key, value1, value2));
+                } else if (value1 == null && value2 != null) {
+                    statuses.add(new Status(Status.CHANGED, key, null, value2));
+                } else if (value1 != null && value2 == null) {
+                    statuses.add(new Status(Status.CHANGED, key, value1, null));
+                } else if (Objects.equals(value1, value2)) {
+                    statuses.add(new Status(Status.UNCHANGED, key, value1, value2));
                 }
-            } else if (map1.containsKey(key)) {
-                // Если ключ есть только в map1
-                difference.get("DELETE").put(key, value1);
-            } else {
-                // Если ключ есть только в map2
-                difference.get("ADD").put(key, value2);
+            } else if (!map1.containsKey(key)) {
+                statuses.add(new Status(Status.ADDED, key, null, value2));
+            } else if (!map2.containsKey(key)) {
+                statuses.add(new Status(Status.DELETED, key, value1, null));
             }
         }
-        return difference;
+        return statuses;
+    }
+
+    public static TreeSet<String> getAllKeys(Map<String, Object> map1, Map<String, Object> map2) {
+        TreeSet<String> allKeys = new TreeSet<>(map1.keySet());
+        allKeys.addAll(map2.keySet());
+        return allKeys;
     }
 }

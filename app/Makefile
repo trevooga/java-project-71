@@ -24,4 +24,7 @@ lint:
 lintTest:
 	@./gradlew checkstyleTest
 
+test:
+	@./gradlew test
+
 .PHONY: build

@@ -1,29 +1,32 @@
 package hexlet.code.formatters;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.TreeSet;
+import hexlet.code.Status;
+
+import java.util.List;
 
 public class Plain {
-    public static String generate(Map<String, Map<String, Object>> differences,
-                                  TreeSet<String> allKeys) throws IOException {
+    public static String generate(List<Status> differences) throws Exception {
         StringBuilder differenceOfFiles = new StringBuilder();
 
-        for (String key : allKeys) {
-            boolean isAdded = differences.get("ADD") != null && differences.get("ADD").containsKey(key);
-            boolean isDeleted = differences.get("DELETE") != null && differences.get("DELETE").containsKey(key);
-            boolean isNotChanged = differences.get("NOTCHANGED") != null
-                    && differences.get("NOTCHANGED").containsKey(key);
-
-            if (isAdded && isDeleted) {
-                differenceOfFiles.append("Property '").append(key).append("' was updated. From ")
-                        .append(processComplexValue(differences.get("DELETE").get(key))).append(" to ")
-                        .append(processComplexValue(differences.get("ADD").get(key))).append("\n");
-            } else if (isAdded) {
-                differenceOfFiles.append("Property '").append(key).append("' was added with value: ")
-                        .append(processComplexValue(differences.get("ADD").get(key))).append("\n");
-            } else if (isDeleted) {
-                differenceOfFiles.append("Property '").append(key).append("' was removed\n");
+        for (Status status : differences) {
+            String key = (String) status.getKey(); // Получаем ключ
+            switch (status.getStatusName()) {
+                case Status.ADDED:
+                    differenceOfFiles.append("Property '").append(key).append("' was added with value: ")
+                            .append(processComplexValue(status.getNewValue())).append("\n");
+                    break;
+                case Status.DELETED:
+                    differenceOfFiles.append("Property '").append(key).append("' was removed\n");
+                    break;
+                case Status.CHANGED:
+                    differenceOfFiles.append("Property '").append(key).append("' was updated. From ")
+                            .append(processComplexValue(status.getOldValue())).append(" to ")
+                            .append(processComplexValue(status.getNewValue())).append("\n");
+                    break;
+                case Status.UNCHANGED:
+                    break;
+                default:
+                    throw new Exception("Unidentified key");
             }
         }
 

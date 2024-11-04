@@ -2,39 +2,27 @@ package hexlet.code;
 
 import hexlet.code.formatters.Formatter;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(String file1, String file2, String formatName) throws IOException {
+    public static String generate(String file1, String file2, String formatName) throws Exception {
         String extension = getFileExtension(file1);
 
         String contentFile1 = new String(Files.readAllBytes(Paths.get(file1)));
         String contentFile2 = new String(Files.readAllBytes(Paths.get(file2)));
-        Map<String, Object> mapOfFile1;
-        Map<String, Object> mapOfFile2;
 
-        if (extension.equals("json")) {
-            mapOfFile1 = Parser.jsonMap(contentFile1);
-            mapOfFile2 = Parser.jsonMap(contentFile2);
-        } else {
-            mapOfFile1 = Parser.yamlMap(contentFile1);
-            mapOfFile2 = Parser.yamlMap(contentFile2);
-        }
+        Map<String, Object> mapOfFile1 = Parser.parse(contentFile1, extension);
+        Map<String, Object> mapOfFile2 = Parser.parse(contentFile2, extension);
 
-        TreeSet<String> allKeys = new TreeSet<>(mapOfFile1.keySet());
-        allKeys.addAll(mapOfFile2.keySet());
+        List<Status> statuses = DifferenceFinder.difference(mapOfFile1, mapOfFile2);
 
-        Map<String, Map<String, Object>> differenceOfMaps = DifferenceFinder.
-                difference(mapOfFile1, mapOfFile2, allKeys);
-
-        return Formatter.format(differenceOfMaps, formatName, allKeys);
+        return Formatter.format(statuses, formatName);
     }
 
-    public static String generate(String file1, String file2) throws IOException {
+    public static String generate(String file1, String file2) throws Exception {
         return generate(file1, file2, "stylish");
     }
 

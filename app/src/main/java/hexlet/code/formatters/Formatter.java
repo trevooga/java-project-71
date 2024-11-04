@@ -1,20 +1,20 @@
 package hexlet.code.formatters;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.TreeSet;
+import hexlet.code.Status;
+
+import java.util.List;
 
 public class Formatter {
 
-    public static String format(Map<String, Map<String, Object>> differences,
-                                String formatName, TreeSet<String> allKeys) throws IOException {
+    public static String format(List<Status> differences,
+                                String formatName) throws Exception {
         switch (formatName.toLowerCase()) {
             case "plain":
-                return Plain.generate(differences, allKeys);
+                return Plain.generate(differences);
             case "json":
-                return Json.jsonGenerate(differences, allKeys);
+                return Json.jsonGenerate(differences);
             case "stylish":
-                return Stylish.generate(differences, allKeys);
+                return Stylish.generate(differences);
             default:
                 throw new IllegalArgumentException("Unknown format: " + formatName);
         }

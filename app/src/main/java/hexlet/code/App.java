@@ -32,6 +32,8 @@ public final class App implements Runnable {
             System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
