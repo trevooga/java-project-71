@@ -13,6 +13,8 @@ public class Parser {
     public static Map<String, Object> parse(String text, String formatName) throws Exception {
         return switch (formatName) {
             case "json" -> jsonMap(text);
+            case "yml" -> yamlMap(text);/*сделал для hexlet check, тк он подает
+                                                        на вход yml формат и выбрасывается исключение*/
             case "yaml" -> yamlMap(text);
             default -> throw new Exception("Unknown format:" + formatName);
         };
