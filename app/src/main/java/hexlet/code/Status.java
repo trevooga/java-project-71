@@ -10,9 +10,7 @@ public final class Status {
     private String statusName;
     private Object oldValue;
     private Object newValue;
-    private Object key;
-    Status(String statusname, Object key, Object oldvalue, Object newvalue) {
-        this.key = key;
+    Status(String statusname, Object oldvalue, Object newvalue) {
         this.statusName = statusname;
         this.oldValue = oldvalue;
         this.newValue = newvalue;
@@ -28,9 +26,5 @@ public final class Status {
 
     public String getStatusName() {
         return statusName;
-    }
-
-    public Object getKey() {
-        return key;
     }
 }

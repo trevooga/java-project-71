@@ -1,36 +1,36 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Status;
-
-import java.util.List;
+import java.util.Map;
 
 public class Stylish {
-    public static String generate(List<Status> differences) throws Exception {
+    public static String generate(Map<String, Status> differences) throws Exception {
         StringBuilder differenceOfFiles = new StringBuilder("{\n");
 
-        for (Status status : differences) {
-            String key = (String) status.getKey(); // Получаем ключ
-            switch (status.getStatusName()) {
+        for (Map.Entry<String, Status> status : differences.entrySet()) {
+            String key = status.getKey();
+            Status value = status.getValue();
+            switch (value.getStatusName()) {
                 case Status.ADDED:
                     differenceOfFiles.append("  + ").append(key).append(": ")
-                            .append(status.getNewValue()).append("\n");
+                            .append(value.getNewValue()).append("\n");
                     break;
                 case Status.DELETED:
                     differenceOfFiles.append("  - ").append(key).append(": ")
-                            .append(status.getOldValue()).append("\n");
+                            .append(value.getOldValue()).append("\n");
                     break;
                 case Status.CHANGED:
                     differenceOfFiles.append("  - ").append(key).append(": ")
-                            .append(status.getOldValue()).append("\n");
+                            .append(value.getOldValue()).append("\n");
                     differenceOfFiles.append("  + ").append(key).append(": ")
-                            .append(status.getNewValue()).append("\n");
+                            .append(value.getNewValue()).append("\n");
                     break;
                 case Status.UNCHANGED:
                     differenceOfFiles.append("    ").append(key).append(": ")
-                            .append(status.getOldValue()).append("\n");
+                            .append(value.getOldValue()).append("\n");
                     break;
                 default:
-                    throw new Exception("Unidentified key");
+                    throw new Exception("Unidentified key" + value.getStatusName());
             }
         }
 

@@ -3,42 +3,50 @@ package hexlet.code.formatters;
 import hexlet.code.Status;
 
 import java.util.List;
+import java.util.Map;
 
 public class Plain {
-    public static String generate(List<Status> differences) throws Exception {
+    public static String generate(Map<String, Status> differences) throws Exception {
         StringBuilder differenceOfFiles = new StringBuilder();
-
-        for (Status status : differences) {
-            String key = (String) status.getKey(); // Получаем ключ
-            switch (status.getStatusName()) {
+        for (Map.Entry<String, Status> entry : differences.entrySet()) {
+            String key = entry.getKey();
+            Status value = entry.getValue();
+            switch (value.getStatusName()) {
                 case Status.ADDED:
                     differenceOfFiles.append("Property '").append(key).append("' was added with value: ")
-                            .append(processComplexValue(status.getNewValue())).append("\n");
+                            .append(stringify(value.getNewValue())).append("\n");
                     break;
                 case Status.DELETED:
                     differenceOfFiles.append("Property '").append(key).append("' was removed\n");
                     break;
                 case Status.CHANGED:
                     differenceOfFiles.append("Property '").append(key).append("' was updated. From ")
-                            .append(processComplexValue(status.getOldValue())).append(" to ")
-                            .append(processComplexValue(status.getNewValue())).append("\n");
+                            .append(stringify(value.getOldValue())).append(" to ")
+                            .append(stringify(value.getNewValue())).append("\n");
                     break;
                 case Status.UNCHANGED:
                     break;
                 default:
-                    throw new Exception("Unidentified key");
+                    throw new Exception("Unidentified key" + value.getStatusName());
             }
         }
 
         return differenceOfFiles.toString().trim();
     }
 
-    public static String processComplexValue(Object value) {
-        if (value != null && (value.toString().contains("{") || value.toString().contains("["))) {
-            return "[complex value]";
-        } else if (value instanceof String) {
+    private static String stringify(Object value) {
+        if (value == null) {
+            return "null";
+        }
+
+        if (value instanceof String) {
             return "'" + value + "'";
         }
-        return value == null ? "null" : value.toString();
+
+        if (value instanceof Map || value instanceof List) {
+            return "[complex value]";
+        }
+
+        return value.toString();
     }
 }

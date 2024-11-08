@@ -4,7 +4,6 @@ import hexlet.code.formatters.Formatter;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Map;
 
 public class Differ {
@@ -17,9 +16,8 @@ public class Differ {
         Map<String, Object> mapOfFile1 = Parser.parse(contentFile1, extension);
         Map<String, Object> mapOfFile2 = Parser.parse(contentFile2, extension);
 
-        List<Status> statuses = DifferenceFinder.difference(mapOfFile1, mapOfFile2);
 
-        return Formatter.format(statuses, formatName);
+        return Formatter.format(DifferenceFinder.difference(mapOfFile1, mapOfFile2), formatName);
     }
 
     public static String generate(String file1, String file2) throws Exception {

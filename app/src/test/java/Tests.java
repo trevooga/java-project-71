@@ -62,7 +62,7 @@ public class Tests {
     void jsonTest() throws Exception {
         String file1 = "src/test/resources/JSONfiles/file3.json";
         String file2 = "src/test/resources/JSONfiles/file4.json";
-        assertEquals(Differ.generate(file1, file2, "json"), resultJson);
+        assertEquals(resultJson, Differ.generate(file1, file2, "json"));
     }
     @Test
     void jsonYamlTest() throws Exception {

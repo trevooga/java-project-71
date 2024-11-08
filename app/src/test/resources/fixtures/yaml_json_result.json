@@ -1,1 +1,1 @@
-{"- follow":false,"  host":"hexlet.io","- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}
+[{"key":"follow","status":{"statusName":"deleted","oldValue":false,"newValue":null}},{"key":"host","status":{"statusName":"unchanged","oldValue":"hexlet.io","newValue":"hexlet.io"}},{"key":"proxy","status":{"statusName":"deleted","oldValue":"123.234.53.22","newValue":null}},{"key":"timeout","status":{"statusName":"changed","oldValue":50,"newValue":20}},{"key":"verbose","status":{"statusName":"added","oldValue":null,"newValue":true}}]

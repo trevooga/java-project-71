@@ -10,25 +10,21 @@ import java.util.Map;
 
 
 public class Parser {
-    public static Map<String, Object> parse(String text, String formatName) throws IOException {
-        if (formatName.equals("json")) {
-            return jsonMap(text);
-        } else {
-            return yamlMap(text);
-        }
+    public static Map<String, Object> parse(String text, String formatName) throws Exception {
+        return switch (formatName) {
+            case "json" -> jsonMap(text);
+            case "yaml" -> yamlMap(text);
+            default -> throw new Exception("Unknown format:" + formatName);
+        };
     }
 
     private static Map<String, Object> yamlMap(String text) throws IOException {
-        ObjectMapper yamlMapper = new YAMLMapper();
-        Map<String, Object> yamlMap = yamlMapper.readValue(text, new TypeReference<>() {
+        return new YAMLMapper().readValue(text, new TypeReference<>() {
         });
-        return yamlMap;
     }
 
     private static Map<String, Object> jsonMap(String text) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> unsortedMap = objectMapper.readValue(text, new TypeReference<>() {
+        return new ObjectMapper().readValue(text, new TypeReference<>() {
         });
-        return unsortedMap;
     }
 }
