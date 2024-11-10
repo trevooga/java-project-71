@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/tramacore/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/tramacore/java-project-71/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/049c0ce9104310d33f94/maintainability)](https://codeclimate.com/github/tramacore/java-project-71/maintainability)  
-[![Test Coverage](https://api.codeclimate.com/v1/badges/049c0ce9104310d33f94/test_coverage)](https://codeclimate.com/github/tramacore/java-project-71/test_coverage)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/6ce6dc945b2a6062c54e/maintainability)](https://codeclimate.com/github/tramacore/java-project-71/maintainability)
+<a href="https://codeclimate.com/github/tramacore/java-project-71/test_coverage"><img src="https://api.codeclimate.com/v1/badges/6ce6dc945b2a6062c54e/test_coverage" /></a>
 # Flat file comparison
 **Hi**, this is my *second project* on **hexlet**.  
 __________________________________________________
