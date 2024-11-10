@@ -4,7 +4,6 @@ import picocli.CommandLine;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Option;
 
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true,
