@@ -2,7 +2,6 @@ plugins {
     application
     jacoco
     id("checkstyle")
-    id("io.freefair.lombok") version "6.5.1"
 }
 
 group = "hexlet.code"
